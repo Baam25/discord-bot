@@ -20,5 +20,16 @@ client.on('messageCreate', (message)=>{
         .catch((err)=>(message.channel.send('No tengo permisos pa mutear a este :(')))))
     };
 })
+client.on('messageUpdate', (oldMessage, newMessage)=> {
+    if (newMessage.mentions.has('631660659137839139')){
+        const deano = oldMessage.guild.members.cache.get(newMessage.author.id);
+        newMessage.react(newMessage.guild.emojis.cache.get('878144589238796298'))
+        .then((reaction)=> (newMessage.reply(`Pendejo de ${newMessage.author} creyo que editando el mensaje se iba a salvar de su Pogiada ${newMessage.guild.emojis.cache.get('862221586915262524')}`)))
+        .catch((err)=> deano
+        .timeout(300000)
+        .then((deano)=> (newMessage.channel.send('Muteado por pendejo')))
+        .catch((err)=>(console.log('No permisos'))))
+    }
+})
 
 client.login(process.env.DISCORD_BOT_TOKEN);
