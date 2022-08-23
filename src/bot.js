@@ -9,7 +9,7 @@ client.on('ready', ()=>{
 })
 
 client.on('messageCreate', (message)=>{
-    if (message.author.bot ) return;
+    if (message.author.bot || (message.type == 19 && !message.cleanContent.includes('@Samualex')) ) return;
     if (message.mentions.has('631660659137839139')){
         const deano = message.guild.members.cache.get(message.author.id);
         message.react('🤓')
@@ -24,7 +24,7 @@ client.on('messageUpdate', (oldMessage, newMessage)=> {
     if (newMessage.mentions.has('631660659137839139')){
         const deano = oldMessage.guild.members.cache.get(newMessage.author.id);
         newMessage.react(newMessage.guild.emojis.cache.get('878144589238796298'))
-        .then((reaction)=> (newMessage.reply(`Pendejo de ${newMessage.author} creyo que editando el mensaje se iba a salvar de su Pogiada ${newMessage.guild.emojis.cache.get('862221586915262524')}`)))
+        .then((reaction)=> (newMessage.reply(`El pendejo de ${newMessage.author} creyo que editando el mensaje se iba a salvar de su Pogiada ${newMessage.guild.emojis.cache.get('862221586915262524')}`)))
         .catch((err)=> deano
         .timeout(300000)
         .then((deano)=> (newMessage.channel.send('Muteado por pendejo')))
